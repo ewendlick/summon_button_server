@@ -12,6 +12,7 @@ This is the server side that receives web requests from The Button, and handles 
 * 3 x (100 Ohm)※
 * Wires
 * Breadboard
+
 ※A lot of specs mention different resistances for different colors. I'm using 100 Ohm resistors for each without issue.
 
 ### Software:
