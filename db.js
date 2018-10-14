@@ -3,7 +3,7 @@ const moment = require('moment')
 
 class DB {
   constructor() {
-    const DB_PATH = './leo.db' // TODO: pass in
+    const DB_PATH = './summon_button.db' // TODO: pass in
 
     this.db = new sqlite3.Database(DB_PATH, (err) => {
       if (err) {
@@ -15,13 +15,13 @@ class DB {
 
   getAll () {
     const sql = `
-      SELECT * FROM leo;`
+      SELECT * FROM summon_button;`
     return this.db.all(sql)
   }
 
   createIfNotExists () {
     const sql = `
-      CREATE TABLE IF NOT EXISTS leo (
+      CREATE TABLE IF NOT EXISTS summon_button (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       ip TEXT,
       created_at DATETIME);`
@@ -30,7 +30,7 @@ class DB {
 
   insert (contentObject) {
     const sql = `
-      INSERT INTO leo (ip, created_at)
+      INSERT INTO summon_button (ip, created_at)
       VALUES ("${contentObject.ip}", "${moment().format('YYYY-MM-DD hh:mm:ss')}");`
     return this.db.run(sql)
   }

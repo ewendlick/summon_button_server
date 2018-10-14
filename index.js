@@ -73,27 +73,6 @@ function policeLED () {
   }
 }
 
-// Leo likes seeing RGB
-function leoLED () {
-  if (LED_R.readSync() === OFF && LED_G.readSync() === OFF) {
-    LED_R.writeSync(ON)
-    LED_G.writeSync(OFF)
-    LED_B.writeSync(OFF)
-  } else if (LED_R.readSync() === ON) {
-    LED_R.writeSync(OFF)
-    LED_G.writeSync(ON)
-    LED_B.writeSync(OFF)
-  } else if (LED_G.readSync() === ON) {
-    LED_R.writeSync(OFF)
-    LED_G.writeSync(OFF)
-    LED_B.writeSync(ON)
-  } else {
-    LED_R.writeSync(ON)
-    LED_G.writeSync(OFF)
-    LED_B.writeSync(OFF)
-  }
-}
-
 function endBlink () {
   clearInterval(policeLEDInterval)
   clearTimeout(policeLEDTimeout)
