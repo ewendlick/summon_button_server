@@ -1,0 +1,19 @@
+{
+  "name": "leo_monitor",
+  "version": "1.0.0",
+  "description": "Leo's Little Summon Button's Server Backend",
+  "main": "index.js",
+  "dependencies": {
+    "death": "^1.1.0",
+    "ip": "^1.1.5",
+    "onoff": "^3.2.2",
+    "sqlite3": "^4.0.2",
+    "moment": "^2.22.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eli Wendlick",
+  "license": "ISC"
+}
