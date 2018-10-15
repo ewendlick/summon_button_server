@@ -4,7 +4,7 @@ const http = require('http')
 const ip = require('ip')
 const Gpio = require('onoff').Gpio
 const sqlite3 = require('sqlite3')
-const ON_DEATH = require('death')
+const onServerDeath = require('death')
 const db = require('./db')
 const DB = new db()
 const CONFIG = require('./config')
@@ -35,6 +35,7 @@ console.log(`Local IP: ${ip.address()}`)
 console.log(`Listening on: ${port}`)
 
 http.createServer((req, res) => {
+  // favicon.ico is requested automatically as a second request. Capture it here
   if (req.url ==='/favicon.ico') {
     res.writeHead(200, {'Content-Type': 'image/x-icon'} )
     res.end()
@@ -51,7 +52,8 @@ http.createServer((req, res) => {
   policeLEDInterval = setInterval(policeLED, CONFIG.LIGHT_INTERVAL)
   policeLEDTimeout = setTimeout(endBlink, CONFIG.LIGHT_DURATION)
 
-  console.log('Insert to DB', DB.insert({ip: req.connection.remoteAddress}))
+  const insertResult = DB.insertIp(req.connection.remoteAddress)
+  console.log('Insert to DB', insertResult)
 }).listen(port)
 
 if (resetPort) {
@@ -60,6 +62,7 @@ if (resetPort) {
   http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain'})
     res.end('Reset')
+    endBlink()
   }).listen(resetPort)
 }
 
@@ -94,7 +97,7 @@ function humanReadableDate () {
   return now.toISOString().replace('T', ' ').substr(0, 19)
 }
 
-ON_DEATH(function(signal, err) {
+onServerDeath(function(signal, err) {
   cleanup()
   if (signal) {
     console.log(signal)
