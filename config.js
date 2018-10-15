@@ -16,9 +16,9 @@ const CONFIG = {
   // Anode (feed in 3.3V via "ground" pin, set other pins to "low" to increase hue)
   IS_ANODE: true,
 
-  LIGHT_PATTERN: 'police', // function name
-  LIGHT_INTERVAL: 200, // Time until color change in ms
-  LIGHT_DURATION: 5000 // Time before LED turns off in ms
+  BLINK_PATTERN: 'rgb', // valid strings: 'police', 'rgb'
+  BLINK_INTERVAL: 200, // Time until color change in ms
+  BLINK_DURATION: 5000 // Time before LED turns off in ms
 }
 
 module.exports = CONFIG

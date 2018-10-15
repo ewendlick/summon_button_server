@@ -4,10 +4,10 @@ const http = require('http')
 const ip = require('ip')
 const sqlite3 = require('sqlite3')
 const onServerDeath = require('death')
-const db = require('./db')
+const db = require('./classes/db')
 const DB = new db()
 const CONFIG = require('./config')
-const led = require('./led')
+const led = require('./classes/led')
 const LED = new led()
 
 // If DB does not exist, create it.

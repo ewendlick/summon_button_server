@@ -3,7 +3,7 @@ const moment = require('moment')
 
 class DB {
   constructor() {
-    const DB_PATH = './summon_button.db'
+    const DB_PATH = './../summon_button.db'
 
     this.db = new sqlite3.Database(DB_PATH, (err) => {
       if (err) {
